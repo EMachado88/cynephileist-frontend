@@ -51,6 +51,7 @@ export default {
 
   strapi: {
     version: 'v3',
+    entities: ['movies'],
   },
 
   env: {

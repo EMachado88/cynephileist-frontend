@@ -1,0 +1,93 @@
+<template>
+  <div class="content">
+    <div class="box">
+      <b-field>
+        <b-input
+          placeholder="Search by movie title"
+          v-model="searchQuery"
+          icon="movie"
+        />
+      </b-field>
+    </div>
+
+    <Movie
+      v-for="movie in movieResults"
+      :key="movie.id"
+      :movie="movie"
+      :add="!Boolean(savedMovies.find(savedMovie => savedMovie.title === movie.title))"
+      :saveMovie="saveMovie"
+      :removeMovie="removeMovie"
+    />
+
+    <Movie
+      v-for="movie in savedMovies"
+      :key="movie.id"
+      :movie="movie"
+      :saveMovie="saveMovie"
+      :removeMovie="removeMovie"
+    />
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'MoviesPage',
+  middleware: 'auth',
+  data() {
+    return {
+      searchQuery: '',
+      movieResults: [],
+      savedMovies: [],
+    }
+  },
+  watch: {
+    async searchQuery() {
+      if (this.searchQuery.length) {
+        const { data } = await this.$axios.get(`https://api.themoviedb.org/3/search/movie?query=${this.searchQuery}&api_key=${process.env.tmdbApiKey}`)
+        this.movieResults = data.results
+      } else {
+        this.movieResults = []
+      }
+    }
+  },
+  created() {
+    this.fetchSavedMovies()  
+  },
+  methods: {
+    async fetchSavedMovies() {
+      try {
+        const movies = await this.$strapi.$movies.find()
+        this.savedMovies = movies
+      } catch (error) {
+        alert(error)
+      }
+    },
+    async saveMovie(id) {
+      const movie = this.movieResults.find(movie => movie.id === id)
+      const { title, original_title, overview, poster_path, vote_average } = movie
+
+      try {
+        await this.$strapi.$movies.create({
+          title,
+          original_title,
+          overview,
+          poster_path,
+          vote_average,
+        })
+        this.fetchSavedMovies()
+      } catch (error) {
+        alert(error)
+      }
+    },
+
+    async removeMovie(id) {
+      try {
+        await this.$strapi.$movies.delete(id)
+        this.fetchSavedMovies()
+      } catch (error) {
+        alert(error)
+      }
+    },
+  },
+}
+</script>

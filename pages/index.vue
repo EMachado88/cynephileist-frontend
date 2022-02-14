@@ -54,7 +54,7 @@ export default {
 
         this.$store.commit('auth/login')
 
-        this.$router.push({ path: '/search' })
+        this.$router.push({ path: '/movies' })
       } catch (error) {
         alert(error)
       }
