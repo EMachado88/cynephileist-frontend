@@ -50,6 +50,7 @@ export default {
   build: {},
 
   strapi: {
+    url: process.env.STRAPI_URL || 'http://localhost:1337',
     version: 'v3',
     entities: ['movies'],
   },
