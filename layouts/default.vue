@@ -1,24 +1,20 @@
 <template>
   <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          Cynophileist
-        </a>
+    <b-navbar class="is-primary">
+        <template #brand>
+            <b-navbar-item tag="router-link" :to="{ path: '/' }">
+                Cynephileist
+            </b-navbar-item>
+        </template>
 
-        <b-button @click="logout" v-if="user">Logout</b-button>
-        
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-    </nav>
+        <template #end>
+            <b-navbar-item tag="div">
+                <div class="buttons">
+                    <b-button @click="logout" v-if="user">Logout</b-button>
+                </div>
+            </b-navbar-item>
+        </template>
+    </b-navbar>
 
     <section class="main-content columns">
       <div class="container column is-10">
