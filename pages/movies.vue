@@ -6,6 +6,9 @@
           placeholder="Search by movie title"
           v-model="searchQuery"
           icon="movie"
+          :icon-right="searchQuery && 'close-box'"
+          icon-right-clickable
+          @icon-right-click="clearQuery"
         />
       </b-field>
     </div>
@@ -92,6 +95,10 @@ export default {
       } catch (error) {
         alert(error)
       }
+    },
+
+    clearQuery() {
+      this.searchQuery = ''
     },
   },
 }
