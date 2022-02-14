@@ -62,8 +62,7 @@ export default {
         alert(error)
       }
     },
-    async saveMovie(id) {
-      const movie = this.movieResults.find(movie => movie.id === id)
+    async saveMovie(movie) {
       const { title, original_title, overview, poster_path, vote_average } = movie
 
       try {
@@ -80,9 +79,11 @@ export default {
       }
     },
 
-    async removeMovie(id) {
+    async removeMovie(movie) {
+      const savedMovie = this.savedMovies.find(savedMovie => savedMovie.title === movie.title)
+
       try {
-        await this.$strapi.$movies.delete(id)
+        await this.$strapi.$movies.delete(savedMovie.id)
         this.fetchSavedMovies()
       } catch (error) {
         alert(error)

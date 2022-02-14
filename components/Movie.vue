@@ -21,7 +21,7 @@
                 v-if="add"
                 icon-left="content-save"
                 class="is-success"
-                @click="saveMovie(movie.id)"
+                @click="saveMovie(movie)"
               >
                 Add
               </b-button>
@@ -30,7 +30,7 @@
                 v-else
                 icon-left="delete"
                 class="is-danger"
-                @click="removeMovie(movie.id)"
+                @click="removeMovie(movie)"
               >
                 Remove
               </b-button>
