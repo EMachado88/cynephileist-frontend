@@ -21,7 +21,7 @@
                 v-if="add"
                 icon-left="content-save"
                 class="is-success"
-                @click="saveMovie(movie)"
+                @click="addMovie(movie)"
               >
                 Add
               </b-button>
@@ -73,7 +73,7 @@ export default {
       type: Boolean,
       defaul: false,
     },
-    saveMovie: {
+    addMovie: {
       type: Function,
       default: () => {},
     },

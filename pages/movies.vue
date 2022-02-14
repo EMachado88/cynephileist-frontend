@@ -15,7 +15,7 @@
       :key="movie.id"
       :movie="movie"
       :add="!Boolean(savedMovies.find(savedMovie => savedMovie.title === movie.title))"
-      :saveMovie="saveMovie"
+      :addMovie="addMovie"
       :removeMovie="removeMovie"
     />
 
@@ -23,9 +23,13 @@
       v-for="movie in savedMovies"
       :key="movie.id"
       :movie="movie"
-      :saveMovie="saveMovie"
+      :addMovie="addMovie"
       :removeMovie="removeMovie"
     />
+
+    <h1 v-if="!savedMovies.length && !movieResults.length" class="text-center">
+      Add your first movie or search
+    </h1>
   </div>
 </template>
 
@@ -62,7 +66,7 @@ export default {
         alert(error)
       }
     },
-    async saveMovie(movie) {
+    async addMovie(movie) {
       const { title, original_title, overview, poster_path, vote_average } = movie
 
       try {
