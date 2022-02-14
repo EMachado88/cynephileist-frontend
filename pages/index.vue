@@ -15,7 +15,7 @@
             </b-field>
 
             <b-field label="Password">
-              <b-input v-model="password" type="password" />
+              <b-input v-model="password" type="password" password-reveal />
             </b-field>
 
             <b-button native-type="submit" type="is-primary">Submit</b-button>
