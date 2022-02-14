@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="columns is-mobile">
-      <div class="card">
+      <div class="card column is-10 is-offset-1">
         <header class="card-header">
           <p class="card-header-title">
             Login
