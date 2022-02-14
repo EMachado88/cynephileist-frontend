@@ -3,7 +3,7 @@
     <article class="media">
       <div class="media-left">
         <figure class="image is-64x64">
-          <img :src="movie.poster_path && `https://image.tmdb.org/t/p/original${movie.poster_path}`" alt="Image">
+          <img v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`" alt="Image">
         </figure>
       </div>
       <div class="media-content">
