@@ -16,7 +16,7 @@
         </template>
     </b-navbar>
 
-    <section class="main-content columns">
+    <section class="main-content">
       <div class="container column is-10">
         <Nuxt />
       </div>
@@ -63,4 +63,11 @@ export default {
 
 <style lang="scss">
 @import '~/assets/styles.scss';
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border: 8px solid #7957d5;
+}
 </style>
