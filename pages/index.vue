@@ -35,8 +35,8 @@ export default {
       password: ''
     }
   },
-  middleware({ store, redirect }) {
-    if(store.state.auth.loggedIn) {
+  middleware({ $strapi, redirect }) {
+    if($strapi.user) {
       return redirect('/movies')
     }
   },
@@ -51,8 +51,6 @@ export default {
           identifier,
           password
         })
-
-        this.$store.commit('auth/login')
 
         this.$router.push({ path: '/movies' })
       } catch (error) {

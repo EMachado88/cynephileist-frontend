@@ -46,7 +46,6 @@ export default {
   methods: {
     async logout() {
       await this.$strapi.logout()
-      this.$store.commit('auth/logout')
       this.$router.push({ path: '/' })
     }
   },
