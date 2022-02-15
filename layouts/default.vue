@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app d-flex flex-column">
     <b-navbar class="is-primary">
         <template #brand>
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
@@ -16,11 +16,22 @@
         </template>
     </b-navbar>
 
-    <section class="main-content">
+    <section class="main-content flex-grow">
       <div class="container column is-10">
         <Nuxt />
       </div>
     </section>
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          ©️ 2022 Emanuel Machado. All Rights reserved.
+        </p>
+        <p>
+          Made with ❤ in Lisbon.
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -64,10 +75,8 @@ export default {
 <style lang="scss">
 @import '~/assets/styles.scss';
 
-html, body {
-  width: 100%;
-  height: 100%;
+.app {
+  height: 100vh;
   overflow: auto;
-  border: 8px solid #7957d5;
 }
 </style>
