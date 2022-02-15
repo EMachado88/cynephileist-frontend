@@ -48,10 +48,10 @@ export default {
     }
   },
   watch: {
-    async searchQuery() {
+    searchQuery() {
       if (this.searchQuery.length) {
-        const { data } = await this.$axios.get(`https://api.themoviedb.org/3/search/movie?query=${this.searchQuery}&api_key=${process.env.tmdbApiKey}`)
-        this.movieResults = data.results
+        this.$axios.get(`https://api.themoviedb.org/3/search/movie?query=${this.searchQuery}&api_key=${process.env.tmdbApiKey}`)
+          .then(({ data }) => this.movieResults = data.results)
       } else {
         this.movieResults = []
       }
