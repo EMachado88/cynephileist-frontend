@@ -45,8 +45,17 @@ export default {
   },
   methods: {
     async logout() {
-      await this.$strapi.logout()
-      this.$router.push({ path: '/' })
+      try {
+        await this.$strapi.logout()
+        this.$router.push({ path: '/' })
+      } catch (message) {
+        this.$buefy.toast.open({
+          duration: 5000,
+          message,
+          position: 'is-bottom',
+          type: 'is-danger'
+        })
+      }
     }
   },
 }

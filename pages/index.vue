@@ -53,8 +53,13 @@ export default {
         })
 
         this.$router.push({ path: '/movies' })
-      } catch (error) {
-        alert(error)
+      } catch (message) {
+        this.$buefy.toast.open({
+          duration: 5000,
+          message,
+          position: 'is-bottom',
+          type: 'is-danger'
+        })
       }
     },
   }

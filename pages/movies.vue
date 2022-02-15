@@ -65,8 +65,13 @@ export default {
       try {
         const movies = await this.$strapi.$movies.find()
         this.savedMovies = movies
-      } catch (error) {
-        alert(error)
+      } catch (message) {
+        this.$buefy.toast.open({
+          duration: 5000,
+          message,
+          position: 'is-bottom',
+          type: 'is-danger'
+        })
       }
     },
     async addMovie(movie) {
@@ -81,8 +86,13 @@ export default {
           vote_average,
         })
         this.fetchSavedMovies()
-      } catch (error) {
-        alert(error)
+      } catch (message) {
+        this.$buefy.toast.open({
+          duration: 5000,
+          message,
+          position: 'is-bottom',
+          type: 'is-danger'
+        })
       }
     },
 
@@ -92,8 +102,13 @@ export default {
       try {
         await this.$strapi.$movies.delete(savedMovie.id)
         this.fetchSavedMovies()
-      } catch (error) {
-        alert(error)
+      } catch (message) {
+        this.$buefy.toast.open({
+          duration: 5000,
+          message,
+          position: 'is-bottom',
+          type: 'is-danger'
+        })
       }
     },
 
