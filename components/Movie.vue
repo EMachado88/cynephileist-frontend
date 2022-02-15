@@ -1,21 +1,36 @@
 <template>
-  <div class="box">
+  <div class="box movie">
     <article class="media">
-      <div class="media-left">
+      <a
+        :href="`https://www.imdb.com/find?q=${movie.title.toLowerCase().replace(' ', '+')}`"
+        target="_blank" 
+        class="media-left"
+      >
         <figure class="image is-64x64">
           <img v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/original${movie.poster_path}`" alt="Image">
         </figure>
-      </div>
+      </a>
       <div class="media-content">
         <div class="content">
-          <p>
-            <strong>{{ movie.original_title }}</strong> <small v-if="movie.original_title !== movie.title">{{ movie.title }}</small>
-            <br>
-            {{ movie.overview }}
-          </p>
+          <a
+            :href="`https://www.imdb.com/find?q=${movie.title.toLowerCase().replace(' ', '+')}`"
+            target="_blank" 
+          >
+            <p>
+              <strong>{{ movie.original_title }}</strong> <small v-if="movie.original_title !== movie.title">{{ movie.title }}</small>
+              <br>
+              {{ movie.overview }}
+            </p>
+          </a>
           <div class="d-flex align-center">
-            <IMDBLogo />
-            &nbsp;{{ movie.vote_average }}
+            <a
+              :href="`https://www.imdb.com/find?q=${movie.title.toLowerCase().replace(' ', '+')}`"
+              target="_blank"
+              class="d-flex align-center"
+            >
+              <IMDBLogo />
+              &nbsp;{{ movie.vote_average }}
+            </a>
             <div class="flex-grow text-right">
               <b-button
                 v-if="add"
@@ -84,3 +99,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.movie a {
+  color: #363636;
+
+  &:hover {
+    color: #7957d5;
+  }
+}
+</style>
